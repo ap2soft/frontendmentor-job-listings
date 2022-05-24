@@ -2,7 +2,7 @@
 import { defineComponent, PropType } from "vue";
 import TheFilter from "./TheFilter.vue";
 import FadeTransition from "../transitions/FadeTransition.vue";
-import { IsFilters, FilterDataInterface } from "../interfaces";
+import { IsFilters, FilterDataInterface, IsFilter } from "../interfaces";
 
 export default defineComponent({
   components: { TheFilter, FadeTransition },
@@ -17,7 +17,7 @@ export default defineComponent({
     remove: (filter: FilterDataInterface) => true,
   },
   setup(props, { emit }) {
-    const handleRemove = (type: string, value: string) =>
+    const handleRemove = (type: IsFilter, value: string) =>
       emit("remove", { type, value });
 
     return { handleRemove };
@@ -58,7 +58,7 @@ export default defineComponent({
       </div>
       <div>
         <button
-          class="font-bold text-gray hover:underline"
+          class="border-y border-y-transparent font-bold text-gray transition hover:border-b-cyan-dark hover:text-cyan-dark"
           @click="$emit('clear')"
         >
           Clear

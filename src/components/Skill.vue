@@ -16,7 +16,7 @@ export default defineComponent({
 
 <template>
   <button
-    class="rounded bg-cyan px-2 py-1 font-bold text-cyan-dark hover:bg-cyan-dark hover:text-white"
+    class="rounded bg-cyan px-2 py-1 font-bold text-cyan-dark transition hover:bg-cyan-dark hover:text-white"
     @click="$emit('filtered')"
   >
     {{ name }}
