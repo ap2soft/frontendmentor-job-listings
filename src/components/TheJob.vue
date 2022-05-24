@@ -1,6 +1,6 @@
 <script lang="ts">
 import { defineComponent, PropType } from "vue";
-import { IsJob } from "../interfaces";
+import { IsFilterData, IsFilters, IsJob } from "../interfaces";
 import NewBadge from "./NewBadge.vue";
 import FeaturedBadge from "./FeaturedBadge.vue";
 import SkillSet from "./SkillSet.vue";
@@ -14,14 +14,14 @@ export default defineComponent({
     },
   },
   emits: {
-    filtered: (filter: string) => true,
+    filtered: (filterData: IsFilterData) => true,
   },
 });
 </script>
 
 <template>
   <figure
-    class="relative rounded-md border-l-[6px] bg-white px-6 pt-12 pb-6 shadow-md shadow-cyan-dark/30 lg:flex lg:items-center lg:gap-4 lg:px-10 lg:pt-6"
+    class="relative rounded-md border-l-[6px] bg-white px-6 pt-12 pb-6 shadow-md shadow-cyan-dark/30 lg:flex lg:items-center lg:gap-10 lg:px-10 lg:pt-6"
     :class="job.featured ? 'border-l-cyan-dark' : 'border-l-transparent'"
   >
     <img

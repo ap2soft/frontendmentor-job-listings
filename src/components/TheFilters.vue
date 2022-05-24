@@ -2,7 +2,7 @@
 import { defineComponent, PropType } from "vue";
 import TheFilter from "./TheFilter.vue";
 import FadeTransition from "../transitions/FadeTransition.vue";
-import { IsFilters, FilterDataInterface, IsFilter } from "../interfaces";
+import { IsFilters, IsFilterData, IsFilter } from "../interfaces";
 
 export default defineComponent({
   components: { TheFilter, FadeTransition },
@@ -14,7 +14,7 @@ export default defineComponent({
   },
   emits: {
     clear: () => true,
-    remove: (filter: FilterDataInterface) => true,
+    remove: (filter: IsFilterData) => true,
   },
   setup(props, { emit }) {
     const handleRemove = (type: IsFilter, value: string) =>

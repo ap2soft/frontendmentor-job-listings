@@ -25,7 +25,7 @@ export interface IsFilters {
 
 export type IsFilter = keyof IsFilters;
 
-export interface FilterDataInterface {
+export interface IsFilterData {
   type: IsFilter;
   value: string;
 }

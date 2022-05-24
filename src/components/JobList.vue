@@ -4,7 +4,7 @@ import { getList } from "../data/jobManager";
 import {
   IsJobList,
   IsFilters,
-  FilterDataInterface,
+  IsFilterData,
   IsFilter,
   IsJob,
 } from "../interfaces";
@@ -44,13 +44,13 @@ export default defineComponent({
       jobList.filter(byRole).filter(byLevel).filter(byLanguages).filter(byTools)
     );
 
-    const handleAddFilter = (filterData: FilterDataInterface): void => {
+    const handleAddFilter = (filterData: IsFilterData): void => {
       if (!filters[filterData.type].includes(filterData.value)) {
         filters[filterData.type].push(filterData.value);
       }
     };
 
-    const handleRemoveFilter = (filterData: FilterDataInterface): void => {
+    const handleRemoveFilter = (filterData: IsFilterData): void => {
       filters[filterData.type] = filters[filterData.type].filter(
         (theFilter) => theFilter !== filterData.value
       );

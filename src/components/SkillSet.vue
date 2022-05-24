@@ -1,6 +1,6 @@
 <script lang="ts">
 import { defineComponent, PropType } from "vue";
-import { IsJob } from "../interfaces";
+import { IsFilter, IsFilterData, IsJob } from "../interfaces";
 import Skill from "./Skill.vue";
 
 export default defineComponent({
@@ -12,10 +12,10 @@ export default defineComponent({
     },
   },
   emits: {
-    filtered: (filter: string) => true,
+    filtered: (filterData: IsFilterData) => true,
   },
   methods: {
-    handleFiltered(type: string, value: string): void {
+    handleFiltered(type: IsFilter, value: string): void {
       this.$emit("filtered", { type, value });
     },
   },
