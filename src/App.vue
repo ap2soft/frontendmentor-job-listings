@@ -10,7 +10,7 @@ export default defineComponent({
 
 <template>
   <TheHeader />
-  <main class="px-6 py-16">
+  <main class="mx-auto max-w-7xl px-6 py-16">
     <Suspense>
       <JobList />
     </Suspense>
