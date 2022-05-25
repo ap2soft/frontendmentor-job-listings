@@ -12,6 +12,11 @@ import TheFilters from "./TheFilters.vue";
 import TheJob from "./TheJob.vue";
 import SlideLeftTransition from "../transitions/SlideLeftTransition.vue";
 
+const filterByProp = (prop: string, filters: string[]): boolean =>
+  filters.length ? filters.includes(prop) : true;
+const filterByArrayProp = (prop: string[], filters: string[]): boolean =>
+  filters.length ? filters.some((filter) => prop.includes(filter)) : true;
+
 export default defineComponent({
   components: { TheJob, TheFilters, SlideLeftTransition },
 
@@ -29,19 +34,13 @@ export default defineComponent({
       Object.values(filters).every((filter) => !filter.length)
     );
 
-    const byRole = ({ role }: IsJob): boolean =>
-      !filters.roles.length || filters.roles.includes(role);
-    const byLevel = ({ level }: IsJob): boolean =>
-      !filters.levels.length || filters.levels.includes(level);
-    const byLanguages = ({ languages }: IsJob): boolean =>
-      !filters.languages.length ||
-      languages.some((theLanguage) => filters.languages.includes(theLanguage));
-    const byTools = ({ tools }: IsJob): boolean =>
-      !filters.tools.length ||
-      tools.some((theTool) => filters.tools.includes(theTool));
-
+    // prettier-ignore
     const filteredJobList: ComputedRef<IsJobList> = computed(() =>
-      jobList.filter(byRole).filter(byLevel).filter(byLanguages).filter(byTools)
+      jobList
+        .filter(({ role }: IsJob) => filterByProp(role, filters.roles))
+        .filter(({ level }: IsJob) => filterByProp(level, filters.levels))
+        .filter(({ languages }: IsJob) => filterByArrayProp(languages, filters.languages))
+        .filter(({ tools }: IsJob) => filterByArrayProp(tools, filters.tools))
     );
 
     const handleAddFilter = (filterData: IsFilterData): void => {
